@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+  </head>
+  <body>
+    <p>解析： HTML 语言直接写在 JavaScript 语言之中，不加任何引号，这就是 JSX 的语法，它允许 HTML 与 JavaScript 的混写。</p>
+    <div id="bjj"></div>
+    <script type="text/babel">
+      var names = ['bjj', 'mayuyu', 'jjb'];
+
+      ReactDOM.render(
+        <div>
+        {
+          names.map(function (name) {
+            return <h1>Hello, {name}!</h1>
+          })
+        }
+        </div>,
+        document.getElementById('bjj')
+      );
+    </script>
+  </body>
+</html>
+疑问：这里面names.map这样的写法是什么意思，没说？
