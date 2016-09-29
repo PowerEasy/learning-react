@@ -1,0 +1,70 @@
+看了教程，原来React也是用<script>标记的，和JS不一样的是type="text/babel"。既然是<script>，那常用的脚本调试工具能用吧？按了F12，试了试，^-^可以调试。
+
+
+学习Demo1。Demo1还是百试不厌的“Hello World”,代码如下：
+      ReactDOM.render(
+        <h1>Hello, world!</h1>,
+        document.getElementById('example')
+      );
+
+
+此时我想到一个问题React和JS通用吗？
+
+我便简单改了下脚本：
+<script type="text/javasctipt">
+var name="Joe";
+</script>
+<script type="text/babel">
+ 
+ ReactDOM.render(
+        <h1>Hello, world!name!</h1>,
+        document.getElementById('example')
+      );
+</script>
+
+出来的结果，**！Hello, world!name!原样输出了，不对不对，我的写法有问题。
+接下来在看一个例子。
+ <script type="text/babel">
+    
+  var names = ['Alice', 'Emily', 'Kate'];
+
+  ReactDOM.render(
+  <div>
+  {
+    names.map(function (name) {
+      return <div>Hello, {name}!</div>
+    })
+  }
+  </div>,
+  document.getElementById('example')
+);
+</script>
+ 
+
+这个例子是循环输出数组，用到的方法名是map，这里没有太大的问题，就是记下map就可以了。
+回到刚刚那一段我写错的脚本，受上边的例子启示，原来变量的输出要用{}套住，于是我一改：
+<script type="text/javasctipt">
+var name="Joe";
+</script>
+<script type="text/babel">
+ 
+ ReactDOM.render(
+        <h1>Hello, world!{name}!</h1>,
+        document.getElementById('example')
+      );
+</script>
+
+输出结果：Hello, world!Joe!
+Good,React可以和JS通用的。接着，很好奇React到底是什么，Babel是什么，优点是什么。我便查阅了一些概念和定义。
+
+react：
+基于HTML的前端界面开发正变得越来越复杂，其本质问题基本都可以归结于如何将来自于服务器端或者用户输入的动态数据高效的反映到复杂的用户界面上。而来自Facebook的React框架正是完全面向此问题的一个解决方案，按官网描述，其出发点为：用于开发数据不断变化的大型应用程序（Building large applications with data that changes over time）。相比传统型的前端开发，React开辟了一个相当另类的途径，实现了前端界面的高效率高性能开发。
+首先，对于React，有一些认识误区，这里先总结一下：
+    React不是一个完整的MVC框架，最多可以认为是MVC中的V（View），甚至React并不非常认可MVC开发模式；
+    React的服务器端Render能力只能算是一个锦上添花的功能，并不是其核心出发点，事实上React官方站点几乎没有提及其在服务器端的应用；
+    有人拿React和Web Component相提并论，但两者并不是完全的竞争关系，你完全可以用React去开发一个真正的Web Component；
+    React不是一个新的模板语言，JSX只是一个表象，没有JSX的React也能工作。
+React是一个全新思路的前端UI框架，它完全接管了UI开发中最为复杂的局部更新部分，擅长在在复杂场景下保证高性能；同时，它引入了基于组件的开发思想，从另一个角度来重新审视UI的构成。通过这种方法，不仅能够提高开发效率，而且可以让代码更容易理解，维护和测试。Facebook以这样一种方式将沉淀多年的前端开发经验和技术的积累完全开源出来，值得所有前端开发者去借鉴和学习。并且React在发布一年的时间里就获得了极大的关注，Github上拥有超过1万的Star，相信其对前端开发的方向，甚至Web Component的标准，都将产生一定的影响。
+Babel：
+是一个转换编译器，它能将ES6转换成可以在浏览器中运行的代码。Babel由来自澳大利亚的开发者Sebastian McKenzie创建。他的目标是使Babel可以处理ES6的所有新语法，并为它内置了React JSX扩展及Flow类型注解支持。
+哈哈哈，真得是很棒的东西，继续努力学习。
